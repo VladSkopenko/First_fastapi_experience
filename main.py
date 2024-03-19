@@ -8,6 +8,11 @@ def root():
     return {"message": "Welcome to FastAPI!"}
 
 
+@app.get("/note/new")
+async def read_new_notes():
+    return {"message": "Return new notes"}
+
+
 @app.get("/notes/{note_id}")
 async def read_note(note_id: int):
     return {"note": note_id}
