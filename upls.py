@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile
 import pathlib
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
@@ -11,3 +12,6 @@ async def create_upload_file(file: UploadFile = File()):
     with open(file_path, "wb") as f:
         f.write(await file.read())
     return {"file_path": file_path}
+
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
